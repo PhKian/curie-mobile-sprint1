@@ -20,6 +20,27 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
     super.dispose();
   }
 
+  void _enviar() {
+    FocusScope.of(context).unfocus();
+    final messenger = ScaffoldMessenger.of(context)..hideCurrentSnackBar();
+    if (_formKey.currentState!.validate()) {
+      setState(() => _submitted = true);
+      messenger.showSnackBar(
+        const SnackBar(
+          content: Text('Registro validado com sucesso!'),
+          backgroundColor: Color(0xFF047857),
+        ),
+      );
+    } else {
+      messenger.showSnackBar(
+        const SnackBar(
+          content: Text('Corrija os campos destacados.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('Registro de observação')),
@@ -92,14 +113,9 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
-              onPressed: () {
-                FocusScope.of(context).unfocus();
-                if (_formKey.currentState!.validate()) {
-                  setState(() => _submitted = true);
-                }
-              },
-              icon: const Icon(Icons.save_outlined),
-              label: const Text('Validar registro'),
+              onPressed: _enviar,
+              icon: const Icon(Icons.send),
+              label: const Text('Enviar registro'),
             ),
             if (_submitted)
               Card(
