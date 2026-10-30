@@ -4,9 +4,9 @@ Aplicativo educacional da turma 2TDSPB para o FIAP Challenge 2026, no contexto C
 
 ## Integrantes
 
-- Matheus Carneiro Maciel — RM a informar.
-- Murilo Marques — RM a informar.
-- Paulo Henrique da Silva Kian — RM a informar.
+- Matheus Carneiro Maciel — RM567753.
+- Murilo Marques — RM568224.
+- Paulo Henrique da Silva Kian — RM563343.
 
 Paulo é o desenvolvedor principal. Matheus e Murilo podem contribuir pontualmente por commits próprios e legítimos. O vídeo será gravado pelo integrante designado; link a adicionar após publicação.
 
