@@ -1,54 +1,69 @@
 # CURIE Sprint 1 — registro de progresso
 
-Atualizado em 2026-10-30.
+Atualizado em 2026-10-30, após execução Android e revisão final.
 
-## Estado atual
+## Estado
 
-- Etapa: revisão técnica, visual em viewport compacto e preparação de entrega local.
-- Concluído: Flutter 3.47.9 stable / Dart 3.13.7; base `curie_mobile`; tema Material 3; oito telas/fluxos; navegação; dados demonstrativos; pontuação e missões; formulário validado; wrappers locais; documentação e auditoria FIAP.
-- Última validação nesta sessão: `flutter test` passou com 5 testes; `flutter analyze` sem issues; `flutter build apk --debug` compilou com sucesso. APK: `build/app/outputs/flutter-apk/app-debug.apk`.
-- `flutter doctor --verbose`: Android toolchain e rede aprovados; todas as licenças Android aceitas; Visual Studio ausente para desktop Windows (não usado nesta Sprint). Flutter/Dart não estão no PATH global; use `tools/flutter.ps1`.
-- Git: branch `main`, identidade `PhKian <paulohkian@gmail.com>`, sem remoto. Quatro commits preexistentes preservados; esta rodada gerou checkpoints locais incrementais para código/testes e documentação, ambos com a identidade de Paulo. Nenhum remoto foi configurado.
+- Projeto `curie_mobile` na branch local `main`, com histórico preservado e checkpoints incrementais anteriores.
+- Flutter 3.47.9 stable e Dart 3.13.7. O SDK Flutter continua em `.tools/flutter` e é ignorado pelo Git.
+- Oito telas/fluxos: boas-vindas, Home, catálogo de missões, detalhes, medição simulada, mapa, Marie, conquistas e formulário (detalhes e medição compõem o fluxo das missões).
+- Android 16/API 36 instalado e executado no AVD `Curie_API_36`; `adb` e Flutter reconheceram `emulator-5554`. O aplicativo foi instalado, iniciado e interagido.
+- Próximos itens externos: gravação/publicação do vídeo pelo integrante designado; confirmação do remoto FIAP antes de conectar e fazer push.
 
-## Diagnóstico Android
+## Android e armazenamento
 
-- SDK: `%LOCALAPPDATA%\Android\Sdk`; Platform 36, Build Tools 36.0.0, Emulator 37.2.12, NDK 28.2.13676358 e CMake 3.22.1 disponíveis. Java usado pelo Flutter: JBR do Android Studio, OpenJDK 25.0.3; compilação Gradle foi aprovada. No momento do download, havia 2,21 GiB livres em C: (raiz do SDK) e 604,8 GiB em D:.
-- `adb` versão 37.0.1 existe e foi executado pelo caminho completo. `adb devices -l` não listou aparelhos conectados; `flutter devices` encontrou Windows, Chrome e Edge, sem Android.
-- Há dois AVDs. `Medium_Phone` aponta para `system-images;android-37.2;google_apis_playstore_ps16k;x86_64`; `Medium_Phone_API_37.0` aponta para `system-images;android-37.0;google_apis_playstore;x86_64`. Nenhum diretório `system-images` está instalado. O catálogo também oferece API 36 Google APIs x86_64 como alternativa estável, mas não foi instalada nem criada configuração nova. A instalação do pacote 37.2 foi tentada pelo SDK Manager oficial e falhou com `Espaço insuficiente no disco`; nada foi removido para contornar isso.
-- SDK Manager relata `platform-tools` registrado em `platform-tools-2`, caminho inconsistente. Ambas as cópias de adb foram observadas; nada foi movido ou removido. Comando `adb` não está no PATH do shell, embora o binário esteja instalado; `tools/flutter.ps1` reconhece o SDK pela configuração isolada.
-- Primeira invocação sem elevação falhou com `CreateFile failed 5` ao acessar o SDK Flutter fora da raiz gravável. A execução aprovada para diagnóstico/validação funcionou. Invocar diretamente `flutter.bat` sem as variáveis do wrapper não encontra o Android SDK; usar o wrapper, que aponta para a configuração isolada.
+- O SDK Android existente em `%LOCALAPPDATA%\Android\Sdk` foi preservado. Imagem `system-images;android-36;google_apis;x86_64` e dados do AVD ficam em `D:\Android`; diretório Emulator da imagem ficou em `D:\Android\Sdk\emulator`.
+- AVD: `D:\Android\AVDs\Curie_API_36.avd`, acelerado por WHPX. Os dois AVDs anteriores foram preservados.
+- Uma junction local liga `%LOCALAPPDATA%\Android\Sdk\system-images\android-36` à imagem em `D:\Android\Sdk\system-images\android-36`, para o AVD Manager encontrar a imagem. Não houve reinstalação do Flutter/Android SDK completo nem movimentação/exclusão de dados anteriores.
+- O app abriu no Android. Foram observados: boas-vindas; Home e aviso demonstrativo sem sobreposição; catálogo e detalhes; medição `0.17 µSv/h` marcada como fictícia; retorno ao catálogo; mapa demonstrativo; Marie com resposta local de meia-vida visível; conquistas com pontos/selo; formulário com erros dos campos vazios e confirmação após entrada válida.
+- Evidências visuais de sessão foram guardadas fora do repositório em `D:\Android\Temp`. Não foram adicionadas como arquivos versionados.
+- Aviso preexistente do SDK Manager: registro de `platform-tools-2` inconsistente. O binário em `platform-tools\adb.exe` funcionou. `adb` pode não estar no PATH; use o caminho do runbook ou o wrapper Flutter.
+- A primeira inicialização do novo AVD teve alerta recuperável do System UI; após aguardar, o boot concluiu e o app executou. Não houve falha persistente.
 
-## Plano e marcos
+## Auditoria funcional e correções desta revisão
 
-| Marco | Estado | Evidência/pendência |
+- Inspecionados navegação, passagem de missão selecionada, estado via `StatefulWidget`/`setState()`, pontuação e trava contra duplicação, atualização de conquistas, mapa e fluxo do formulário.
+- Reposicionamento do aviso demonstrativo na Home para não ficar coberto pelo botão flutuante.
+- Pontuação de conquistas agora usa singular/plural correto.
+- Marie agora oculta o teclado e rola automaticamente até uma resposta enviada, mantendo o campo pronto para nova pergunta.
+- Textos/acento revisados no formulário e rótulos da navegação.
+- Os cinco testes existentes foram ampliados: incluem pontos/conquistas após missões, ausência de pontuação duplicada, validação do formulário, resposta de Marie sem rolagem manual e viewport compacto.
+
+## Verificações finais
+
+Resultados desta rodada:
+
+- `flutter analyze`: **aprovado**, sem problemas.
+- `flutter test`: **5 testes aprovados**.
+- `flutter build apk --debug`: **aprovado**, APK em `build/app/outputs/flutter-apk/app-debug.apk`.
+- Execução Android: **app instalado, aberto e navegado** no Android 16/API 36 (`emulator-5554`).
+- `flutter doctor -v`: Flutter/Dart stable; Android toolchain e licenças reconhecidos/aceitos. O aviso de Visual Studio refere-se ao alvo Windows desktop e não é necessário nesta Sprint.
+- `flutter doctor -v` também recomenda Flutter/Dart no PATH; isso é intencionalmente local, pois `tools/flutter.ps1` fornece o SDK sem configuração global. O resumo do doctor reporta duas categorias: esse aviso de PATH e Visual Studio desktop ausente; Android passou.
+- `flutter pub get`: concluído. Foram informadas cinco dependências com versões mais novas fora das restrições atuais; nenhuma atualização foi necessária para esta Sprint.
+
+## Git e entrega
+
+- Branch atual: `main`; identidade Git: `PhKian <paulohkian@gmail.com>`.
+- Histórico anterior preservado. Nenhum repositório foi reinicializado, nenhum autor foi falsificado, remoto não configurado e nenhum push realizado.
+- `/.tools/` e `/build/` estão no `.gitignore`; o SDK e o APK não devem entrar no Git.
+- Consultar `docs/GITHUB_HANDOFF.md` para conectar ao repositório autorizado pela FIAP, convidar colegas e realizar contribuições/revisão com autoria real.
+- Consultar `docs/VIDEO_CHECKLIST.md` para roteiro cronometrado e sequência de gravação até cinco minutos.
+
+## Marcos
+
+| Marco | Situação | Evidência/pendência |
 | --- | --- | --- |
-| 1. Ambiente Flutter | CONCLUÍDO | SDK funcional, estável; doctor e versões verificados. |
-| 2. Fundação Flutter | CONCLUÍDO | `main.dart`, tema, modelos, dados e componentes. |
-| 3. Boas-vindas, Home e missões | CONCLUÍDO | Fluxo presente e testado. |
-| 4. Medição e estado | CONCLUÍDO | Estado local, pontuação e proteção contra duplicação testados. |
-| 5. Formulário | CONCLUÍDO | Validação e confirmação testadas. |
-| 6. Mapa, Marie e conquistas | CONCLUÍDO | Conteúdo local; abas cobertas por teste. |
-| 7. Interface | EM ANDAMENTO | Overflow de chips em tela compacta corrigido com `Wrap`; teste a 360×640 passa. Inspeção em aparelho ainda pendente. |
-| 8. Testes e build | CONCLUÍDO | Analyze limpo, cinco testes aprovados, APK debug compilado. |
-| 9. Documentação | CONCLUÍDO | README, auditoria FIAP, checklist de vídeo e progresso. |
-| 10. Android real e revisão final | BLOQUEADO | Precisa de system image/dispositivo; sem execução nem capturas reais. |
+| Flutter e projeto base | Concluído | Versões stable confirmadas e projeto existente preservado. |
+| Oito telas/fluxos | Concluído | Código inspecionado e fluxos demonstrados em Android. |
+| Estado, pontos e missões | Concluído | Cobertura automatizada e fluxo Android observados. |
+| Formulário | Concluído | Erros vazios e confirmação válida demonstrados no Android. |
+| Build, análise e testes | Concluído | Analyze limpo, cinco testes e APK debug compilado. |
+| Execução Android | Concluído | AVD API36 reconhecido por `adb`/Flutter; app aberto. |
+| Auditoria e documentação | Concluído | README, auditoria, runbook, tutorial GitHub, vídeo e progresso atualizados. |
+| Vídeo e remoto FIAP | Pendente externo | Integrante grava/publica; equipe confirma destino remoto autorizado antes de conectar. |
 
-## Próxima ação
+## Próximos passos
 
-Liberar espaço no volume do Android SDK e instalar a imagem oficial do AVD `Medium_Phone`: `system-images;android-37.2;google_apis_playstore_ps16k;x86_64`. Depois, iniciar o emulador, confirmar com `adb devices` e `flutter devices`, executar `tools/flutter.ps1 run` e inspecionar as oito telas. Alternativa sem download: conectar dispositivo Android com depuração USB habilitada. Não há operação de licença pendente.
-
-## Decisões técnicas
-
-- Manter Flutter em `.tools/flutter`, fora do código-fonte efetivamente versionado; `/.tools/` inteiro é ignorado. Não mover o SDK sem necessidade.
-- `tools/flutter.ps1` usa configuração isolada em `.tools/flutter-config` e aponta para o SDK Android existente, sem alterar a configuração global Flutter.
-- Usar somente dados educativos demonstrativos nesta Sprint, sem sensores, backend, persistência ou IA generativa.
-- Estado da missão é mantido em memória; concluir a mesma missão não soma pontos de novo na sessão.
-- Nenhuma configuração ou arquivo do SDK Android foi alterado nesta sessão; não aceitar licença em nome do usuário.
-- Nenhum remoto foi criado e nenhum push foi feito.
-
-## Retomada
-
-1. Ler este registro e confirmar `git status --short --branch`.
-2. Executar `tools/flutter.ps1 doctor --verbose`, `tools/flutter.ps1 analyze` e `tools/flutter.ps1 test`.
-3. Instalar a imagem Android indicada para o AVD existente (ou conectar aparelho), iniciar o app e registrar evidências reais.
-4. Revisar `docs/FIAP_AUDIT.md` após a verificação Android; atualizar o link do vídeo somente quando fornecido pelo grupo.
+1. O colega designado grava o vídeo seguindo `docs/VIDEO_CHECKLIST.md`, publica conforme as instruções oficiais e informa o link.
+2. Confirmar URL/organização de entrega FIAP; só então Paulo configura o remoto e envia `main`, seguindo `docs/GITHUB_HANDOFF.md`.
+3. Revisar o vídeo e a entrega final com o grupo e adicionar o link confirmado ao README.

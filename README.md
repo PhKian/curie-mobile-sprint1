@@ -8,21 +8,21 @@ Aplicativo educacional da turma 2TDSPB para o FIAP Challenge 2026, no contexto C
 - Murilo Marques — RM a informar.
 - Paulo Henrique da Silva Kian — RM a informar.
 
-O desenvolvimento principal do aplicativo é centralizado em Paulo. O vídeo demonstrativo será gravado por outro integrante; link a adicionar após a publicação.
+Paulo é o desenvolvedor principal. Matheus e Murilo podem contribuir pontualmente por commits próprios e legítimos. O vídeo será gravado pelo integrante designado; link a adicionar após publicação.
 
 ## Funcionalidades
 
 - Boas-vindas e identidade CURIE em Material 3.
 - Home com pontuação e progresso.
-- Catálogo de três missões educativas.
+- Catálogo de três missões educativas e telas de detalhes.
 - Medição local simulada, identificada como fictícia.
 - Mapa ilustrativo com registros demonstrativos.
 - Marie com respostas locais predefinidas, sem IA generativa.
-- Conquistas atualizadas conforme as missões concluídas.
+- Conquistas atualizadas conforme missões concluídas.
 - Formulário de observação com validação e feedback.
-- Pontuação em memória, com proteção contra conclusão duplicada.
+- Pontuação em memória, protegida contra conclusão duplicada da mesma missão.
 
-Todos os dados são demonstrativos. Esta Sprint não integra ESP32, sensor Geiger-Müller, NFC, backend, banco de dados, nuvem nem IA generativa. O progresso não persiste ao fechar o aplicativo.
+Todos os dados são demonstrativos. Esta Sprint não integra ESP32, sensor Geiger-Müller, NFC, backend, banco de dados, nuvem ou IA generativa. O progresso não persiste ao fechar o aplicativo.
 
 ## Tecnologias e estrutura
 
@@ -32,26 +32,34 @@ Todos os dados são demonstrativos. Esta Sprint não integra ESP32, sensor Geige
 - `lib/models/`: modelo de missão.
 - `lib/data/`: conteúdo simulado e respostas da Marie.
 - `lib/widgets/`: componentes reutilizáveis.
-- `test/`: testes de widgets para boas-vindas, missões, formulário, mapa, Marie e viewport compacto.
+- `test/`: cinco testes de widget para boas-vindas, missões/pontos, formulário, mapa, Marie e viewport compacto.
 - `android/`: configuração Android.
 
 ## Preparar e executar
 
-O SDK Flutter local fica em `.tools/flutter` e é ignorado pelo Git. `tools/flutter.ps1` usa configuração local isolada, sem modificar preferências globais do Flutter. No PowerShell:
+O SDK Flutter fica em `.tools/flutter`, fora dos arquivos versionados e ignorado pelo Git. `tools/flutter.ps1` utiliza configuração local isolada. No PowerShell, a partir da pasta do projeto:
 
 ```powershell
 .\tools\flutter.ps1 pub get
 .\tools\flutter.ps1 analyze
 .\tools\flutter.ps1 test
-.\tools\flutter.ps1 run
 ```
 
-O APK debug compila em `build/app/outputs/flutter-apk/app-debug.apk`. `flutter doctor --verbose` confirmou que as licenças Android estão aceitas, mas ainda não foi possível executar em Android: não há imagem de sistema instalada nem aparelho conectado. A tentativa de instalar a imagem configurada para `Medium_Phone` falhou por espaço insuficiente no disco. O SDK Manager também reporta `platform-tools` em `platform-tools-2`, local inconsistente que requer revisão.
+Para iniciar o Android API 36 preparado fora do disco do projeto, siga [o runbook Android](docs/ANDROID_RUNBOOK.md). Ele preserva o Android SDK existente em C: e mantém imagem/AVD em D:. Depois de iniciar o emulador:
 
-## Vídeo
+```powershell
+.\tools\flutter.ps1 devices
+.\tools\flutter.ps1 run --device-id emulator-5554
+```
 
-Consulte [o checklist de gravação](docs/VIDEO_CHECKLIST.md). Link do YouTube não listado: pendente.
+Use `--device-id` no wrapper PowerShell. O APK debug é gerado em `build/app/outputs/flutter-apk/app-debug.apk` (diretório ignorado).
 
-## Auditoria e andamento
+## Entrega e auditoria
 
-Consulte [a auditoria dos critérios da Sprint](docs/FIAP_AUDIT.md) e [o registro de progresso](docs/SPRINT1_PROGRESS.md). A pontuação não é estimada como máxima sem evidências da demonstração final.
+- [Auditoria dos critérios FIAP](docs/FIAP_AUDIT.md)
+- [Registro de progresso e resultados](docs/SPRINT1_PROGRESS.md)
+- [Runbook de execução Android](docs/ANDROID_RUNBOOK.md)
+- [Tutorial de preparação do GitHub](docs/GITHUB_HANDOFF.md)
+- [Roteiro definitivo do vídeo](docs/VIDEO_CHECKLIST.md)
+
+O repositório local contém o histórico incremental na branch `main`; remoto e push dependem da confirmação do destino de entrega autorizado pela FIAP. A pontuação da banca não é estimada sem a publicação e evidências finais exigidas.

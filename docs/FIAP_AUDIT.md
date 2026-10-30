@@ -1,22 +1,23 @@
 # Auditoria de requisitos — FIAP Sprint 1
 
-Auditoria baseada no código local e nos testes automatizados disponíveis. Não atribui nota; a avaliação final depende também da execução e do vídeo demonstrativo.
+Auditoria baseada no código, testes automatizados e execução manual real no emulador Android API 36 em 2026-10-30. Não atribui nota; a avaliação final depende dos critérios oficiais, da gravação e do material de entrega.
 
 | Critério | Implementação e localização | Verificação/evidência | Pendências e risco |
 | --- | --- | --- | --- |
-| Navegação — 25 | Boas-vindas, Home, Missões, Medição, Mapa, Marie, Conquistas e formulário em `lib/screens/`; navegação central em `lib/main.dart`. | Teste de abertura/navegação, acesso a mapa e Marie, fluxo de missão e formulário em `test/widget_test.dart`. | Execução Android real e gravação ainda pendentes; demonstrar retornos e botões no vídeo. |
-| Protótipo visual — 30 | Tema Material 3, componentes comuns em `lib/widgets/curie_components.dart`, telas sob `lib/screens/`. Conteúdo demonstrativo identificado. | Teste de viewport compacto cobre Home, abas, formulário e detalhe da missão. Build APK debug registrado no progresso. | Não há captura real de emulador/aparelho; inspeção visual final em Android depende de dispositivo configurado. |
-| Gerenciamento de estado — 20 | Estado local via `StatefulWidget`/`setState()` no shell e fluxo de medição; conclusão identificada por missão evita pontuação repetida; conquistas acompanham pontos. | Teste automatizado conclui missão, verifica pontos e bloqueia duplicação. | Estado é volátil e reinicia ao encerrar app, limitação coerente com o escopo local desta Sprint. |
-| Formulário e validação — 15 | Formulário e validadores em `lib/screens/observation_form_screen.dart`. | Teste apresenta campo inválido, depois dados válidos e confirmação. | Complementar com demonstração em Android; avaliar campos/teclado no aparelho. |
-| Vídeo — 10 | Roteiro e checklist em `docs/VIDEO_CHECKLIST.md`. | Checklist preparado; arquivo/link ainda não fornecido. | Gravação e link são responsabilidade do integrante designado; critério não pode ser comprovado até publicação/entrega. |
+| Navegação — 25 | Boas-vindas, Home, Missões, detalhes/medição, Mapa, Marie, Conquistas e formulário em `lib/screens/`; navegação central em `lib/main.dart`. | `flutter test` cobre navegação, telas principais e viewport compacto. No Android 16/API 36, abriu-se o app e percorreram-se as telas e retornos. | Colega responsável deve gravar a demonstração final. |
+| Protótipo visual — 30 | Tema Material 3, componentes comuns em `lib/widgets/curie_components.dart`, telas sob `lib/screens/`. Conteúdo demonstrativo identificado. | App instalado e aberto no AVD `Curie_API_36`; verificaram-se visualmente boas-vindas, Home, missões/detalhes, medição, mapa, Marie, conquistas e formulário. Aviso da Home ficou acima da área do botão flutuante. | Conferir qualidade final da captura de vídeo e seus requisitos de publicação. |
+| Gerenciamento de estado — 20 | Estado local via `StatefulWidget`/`setState()` no shell e fluxo de medição; conclusão identificada por missão evita pontuação repetida; conquistas acompanham pontos. | Testes verificam pontos, conclusão e prevenção de duplicidade. Na execução Android, a medição exibiu `0.17 µSv/h` (fictício) e a ação de conclusão atualizou o progresso. | Estado é volátil e reinicia ao encerrar app, limitação do protótipo desta Sprint. |
+| Formulário e validação — 15 | Formulário e validadores em `lib/screens/observation_form_screen.dart`. | Teste automatizado cobriu entrada inválida e válida. No Android, campos vazios mostraram mensagens de título mínimo de 3 caracteres e descrição mínima de 10; entrada válida mostrou “Registro validado!”. | Sem persistência, conforme escopo declarado. |
+| Vídeo — 10 | Roteiro definitivo e sequência de interação em `docs/VIDEO_CHECKLIST.md`. | Roteiro de até cinco minutos preparado; execução Android disponível para a gravação. | Gravação e link são responsabilidade do integrante designado; critério só pode ser comprovado após disponibilização e revisão do vídeo. |
 
-## Testes locais registrados
+## Revisão técnica executada
 
-- `flutter analyze`: aprovado sem issues após a correção responsiva.
-- `flutter test`: cinco testes de widget aprovados no último ciclo documentado.
-- `flutter build apk --debug`: compilação Android aprovada; APK não substitui execução em dispositivo.
-- `flutter doctor --verbose`: Android toolchain reconhecida, licenças aceitas e nenhum dispositivo Android conectado. O AVD não inicia porque sua imagem está ausente; o download da imagem falhou por espaço insuficiente no disco. Ver `docs/SPRINT1_PROGRESS.md`.
+- Flutter 3.47.9 stable / Dart 3.13.7.
+- Android 16 / API 36, AVD `Curie_API_36`, reconhecido como `emulator-5554` por `adb` e Flutter.
+- `flutter doctor -v` aprovou o Android SDK (36.0.0), JBR OpenJDK 25.0.3, rede e licenças. As duas categorias sinalizadas são Flutter/Dart fora do PATH (intencional: usar o wrapper local) e Visual Studio ausente (alvo Windows desktop fora do escopo).
+- App instalado e iniciado no emulador; telas e fluxos acima foram examinados por interação e árvore de acessibilidade Android.
+- Formulário Android demonstrou erros nos campos vazios e confirmação depois de entrada válida.
+- Marie exibiu resposta local de meia-vida, com a área de resposta rolada para ficar visível.
+- Pontos, mapa, missões e conquistas usam valores demonstrativos. Nenhuma integração física ou serviço remoto pertence a esta Sprint.
 
-## Evidências e limitações
-
-Os testes e a compilação provam comportamentos no ambiente Flutter e a geração do pacote, mas não provam renderização ou interação em hardware Android. Não há capturas reais disponíveis neste registro. Nenhuma integração física ou serviço remoto faz parte desta Sprint.
+Os resultados finais de `flutter analyze`, `flutter test` e `flutter build apk --debug` são registrados em `docs/SPRINT1_PROGRESS.md` após sua execução nesta revisão. Evidências capturadas localmente durante a inspeção ficam em `D:\Android\Temp` e não são arquivos do repositório.
