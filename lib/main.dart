@@ -94,12 +94,12 @@ class _CurieShellState extends State<CurieShell> {
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             selectedIcon: Icon(Icons.home),
-            label: 'Inicio',
+            label: 'Início',
           ),
           NavigationDestination(
             icon: Icon(Icons.assignment_outlined),
             selectedIcon: Icon(Icons.assignment),
-            label: 'Missoes',
+            label: 'Missões',
           ),
           NavigationDestination(
             icon: Icon(Icons.map_outlined),
@@ -126,7 +126,7 @@ class _CurieShellState extends State<CurieShell> {
                 ),
               ),
               icon: const Icon(Icons.edit_note),
-              label: const Text('Registrar observacao'),
+              label: const Text('Registrar observação'),
             )
           : null,
     );

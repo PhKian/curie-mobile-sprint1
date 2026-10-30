@@ -107,6 +107,23 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 16),
+        const Card(
+          child: Padding(
+            padding: EdgeInsets.all(14),
+            child: Row(
+              children: [
+                Icon(Icons.info_outline, color: Color(0xFF2563EB)),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'As medições e os pontos são demonstrativos e não representam dados científicos reais.',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 24),
         SectionTitle(
           'Continue explorando',
@@ -158,23 +175,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        const SizedBox(height: 20),
-        const Card(
-          child: Padding(
-            padding: EdgeInsets.all(14),
-            child: Row(
-              children: [
-                Icon(Icons.info_outline, color: Color(0xFF2563EB)),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    'As medições e os pontos são demonstrativos e não representam dados científicos reais.',
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ],
     ),

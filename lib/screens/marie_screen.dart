@@ -11,6 +11,7 @@ class MarieScreen extends StatefulWidget {
 
 class _MarieScreenState extends State<MarieScreen> {
   final _controller = TextEditingController();
+  final _scrollController = ScrollController();
   final List<(bool, String)> _messages = [
     (
       false,
@@ -20,6 +21,8 @@ class _MarieScreenState extends State<MarieScreen> {
   void _ask(String question) {
     final text = question.trim();
     if (text.isEmpty) return;
+    _controller.clear();
+    FocusScope.of(context).unfocus();
     final lowerQuestion = text.toLowerCase();
     final key = lowerQuestion.contains('radia')
         ? 'radia'
@@ -36,13 +39,21 @@ class _MarieScreenState extends State<MarieScreen> {
     setState(() {
       _messages.add((true, text));
       _messages.add((false, answer));
-      _controller.clear();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOut,
+      );
     });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -56,6 +67,7 @@ class _MarieScreenState extends State<MarieScreen> {
         ),
         Expanded(
           child: ListView(
+            controller: _scrollController,
             padding: const EdgeInsets.all(16),
             children: [
               Card(

@@ -44,7 +44,9 @@ class AchievementsScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '$completedCount missões concluídas',
+                        completedCount == 1
+                            ? '1 missão concluída'
+                            : '$completedCount missões concluídas',
                         style: const TextStyle(color: Colors.white70),
                       ),
                     ],

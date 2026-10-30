@@ -31,12 +31,32 @@ void main() {
     await tester.tap(find.byIcon(Icons.emoji_events_outlined));
     await tester.pumpAndSettle();
     expect(find.text('30 pontos'), findsOneWidget);
+    expect(find.text('1 missão concluída'), findsOneWidget);
+    expect(find.byIcon(Icons.lock_outline), findsNWidgets(2));
     await tester.tap(find.byIcon(Icons.assignment_outlined));
     await tester.pumpAndSettle();
     await tester.tap(find.textContaining('ao nosso redor'));
     await tester.pumpAndSettle();
     expect(find.textContaining('adicionados novamente.'), findsOneWidget);
     expect(find.textContaining('Concluir'), findsNothing);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.textContaining('meia-vida'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.textContaining('Iniciar'));
+    await tester.tap(find.textContaining('Iniciar'));
+    await tester.pumpAndSettle();
+    await tester.drag(find.byType(ListView).last, const Offset(0, -500));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('completeMissionButton')));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.emoji_events_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('70 pontos'), findsOneWidget);
+    expect(find.text('2 missões concluídas'), findsOneWidget);
+    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
   });
 
   testWidgets('observation form validates and confirms a record', (
@@ -51,6 +71,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Informe ao menos 3 caracteres.'), findsOneWidget);
     await tester.enterText(find.byType(TextFormField).at(0), 'Amostra de solo');
+    await tester.tap(find.text('Validar registro'));
+    await tester.pumpAndSettle();
+    expect(find.text('Descreva em pelo menos 10 caracteres.'), findsOneWidget);
     await tester.enterText(
       find.byType(TextFormField).at(1),
       'Comparei observacoes do experimento educativo.',
@@ -69,11 +92,17 @@ void main() {
     await tester.tap(find.text('Marie').last);
     await tester.pumpAndSettle();
     expect(find.textContaining('respostas locais'), findsOneWidget);
-    await tester.tap(find.textContaining('radia'));
+    await tester.enterText(find.byType(TextField), 'O que é meia-vida?');
+    await tester.tap(find.byTooltip('Enviar pergunta'));
     await tester.pumpAndSettle();
-    await tester.drag(find.byType(ListView).last, const Offset(0, -600));
-    await tester.pumpAndSettle();
-    expect(find.textContaining('energia que se propaga'), findsOneWidget);
+    expect(
+      find.textContaining('Meia-vida é o tempo necessário'),
+      findsOneWidget,
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      isEmpty,
+    );
   });
 
   testWidgets('main screens fit a compact phone viewport', (tester) async {
@@ -87,7 +116,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
 
-    for (final destination in ['Missoes', 'Mapa', 'Marie', 'Conquistas']) {
+    for (final destination in ['Missões', 'Mapa', 'Marie', 'Conquistas']) {
       await tester.tap(find.text(destination).last);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: '$destination screen');
@@ -101,7 +130,7 @@ void main() {
 
     await tester.pageBack();
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Missoes').last);
+    await tester.tap(find.text('Missões').last);
     await tester.pumpAndSettle();
     await tester.tap(find.textContaining('ao nosso redor'));
     await tester.pumpAndSettle();

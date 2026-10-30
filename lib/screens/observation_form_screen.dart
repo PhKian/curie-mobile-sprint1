@@ -22,7 +22,7 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Registro de observacao')),
+    appBar: AppBar(title: const Text('Registro de observação')),
     body: SafeArea(
       child: Form(
         key: _formKey,
@@ -35,13 +35,13 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 6),
-            const Text('Registre o que voce observou durante a atividade.'),
+            const Text('Registre o que você observou durante a atividade.'),
             const SizedBox(height: 14),
             const Card(
               child: Padding(
                 padding: EdgeInsets.all(14),
                 child: Text(
-                  'Registro demonstrativo local. Nao inclui dados de medicao real.',
+                  'Registro demonstrativo local. Não inclui dados de medição real.',
                 ),
               ),
             ),
@@ -49,7 +49,7 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
             TextFormField(
               controller: _name,
               decoration: const InputDecoration(
-                labelText: 'Titulo da observacao',
+                labelText: 'Título da observação',
                 prefixIcon: Icon(Icons.title),
                 border: OutlineInputBorder(),
               ),
@@ -81,7 +81,7 @@ class _ObservationFormScreenState extends State<ObservationFormScreen> {
               maxLines: 6,
               maxLength: 500,
               decoration: const InputDecoration(
-                labelText: 'O que voce observou?',
+                labelText: 'O que você observou?',
                 alignLabelWithHint: true,
                 border: OutlineInputBorder(),
               ),
