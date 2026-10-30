@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../data/demo_data.dart';
 import '../widgets/curie_components.dart';
@@ -14,7 +14,7 @@ class _MarieScreenState extends State<MarieScreen> {
   final List<(bool, String)> _messages = [
     (
       false,
-      'OlÃƒÂ¡! Sou Marie, sua tutora demonstrativa. Escolha um tema ou escreva uma pergunta sobre ciÃƒÂªncia nuclear.',
+      'OlÃƒÆ’Ã‚Â¡! Sou Marie, sua tutora demonstrativa. Escolha um tema ou escreva uma pergunta sobre ciÃƒÆ’Ã‚Âªncia nuclear.',
     ),
   ];
   void _ask(String question) {
@@ -25,15 +25,14 @@ class _MarieScreenState extends State<MarieScreen> {
         ? 'radia'
         : lowerQuestion.contains('meia-vida')
         ? 'meia-vida'
-        : lowerQuestion.contains('seguranca') ||
-              lowerQuestion.contains('segurança')
+        : lowerQuestion.contains('seguran')
         ? 'seguranca'
         : lowerQuestion.contains('curie')
         ? 'curie'
         : '';
     final answer =
         marieAnswers[key] ??
-        'Ainda estou aprendendo sobre esse tema nesta demonstraÃƒÂ§ÃƒÂ£o. Experimente perguntar sobre radiaÃƒÂ§ÃƒÂ£o, meia-vida, seguranÃƒÂ§a ou CURIE.';
+        'Ainda estou aprendendo sobre esse tema nesta demonstraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o. Experimente perguntar sobre radiaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o, meia-vida, seguranÃƒÆ’Ã‚Â§a ou CURIE.';
     setState(() {
       _messages.add((true, text));
       _messages.add((false, answer));
@@ -53,7 +52,7 @@ class _MarieScreenState extends State<MarieScreen> {
       children: [
         const PageHeading(
           title: 'Marie',
-          subtitle: 'Tutora de ciÃƒÂªncias Ã¢â‚¬Â¢ respostas locais',
+          subtitle: 'Tutora de ciÃƒÆ’Ã‚Âªncias ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ respostas locais',
         ),
         Expanded(
           child: ListView(
@@ -69,7 +68,7 @@ class _MarieScreenState extends State<MarieScreen> {
                       SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          'DemonstraÃƒÂ§ÃƒÂ£o educativa: sem IA generativa ou conexÃƒÂ£o com a internet.',
+                          'DemonstraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o educativa: sem IA generativa ou conexÃƒÆ’Ã‚Â£o com a internet.',
                         ),
                       ),
                     ],
@@ -82,9 +81,9 @@ class _MarieScreenState extends State<MarieScreen> {
                 runSpacing: 4,
                 children:
                     [
-                          'O que ÃƒÂ© radiaÃƒÂ§ÃƒÂ£o?',
-                          'O que ÃƒÂ© meia-vida?',
-                          'Como ter seguranÃƒÂ§a?',
+                          'O que ÃƒÆ’Ã‚Â© radiaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o?',
+                          'O que ÃƒÆ’Ã‚Â© meia-vida?',
+                          'Como ter seguranÃƒÆ’Ã‚Â§a?',
                         ]
                         .map(
                           (q) => ActionChip(
@@ -130,7 +129,7 @@ class _MarieScreenState extends State<MarieScreen> {
                   textInputAction: TextInputAction.send,
                   onSubmitted: _ask,
                   decoration: const InputDecoration(
-                    hintText: 'Pergunte ÃƒÂ  Marie...',
+                    hintText: 'Pergunte ÃƒÆ’Ã‚Â  Marie...',
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Colors.white,
@@ -150,3 +149,4 @@ class _MarieScreenState extends State<MarieScreen> {
     ),
   );
 }
+
