@@ -1,28 +1,28 @@
-﻿# CURIE — Mobile Application Development, Sprint 1
+# CURIE Ã¢â‚¬â€ Mobile Application Development, Sprint 1
 
 Aplicativo educacional da turma 2TDSPB para o FIAP Challenge 2026, no contexto CTMSP / Marinha do Brasil. O CURIE aproxima estudantes do ensino medio da ciencia nuclear por atividades interativas.
 
 ## Integrantes
 
-- Matheus Carneiro Maciel — RM a informar.
-- Murilo Marques — RM a informar.
-- Paulo Henrique da Silva Kian — RM a informar.
+- Matheus Carneiro Maciel Ã¢â‚¬â€ RM a informar.
+- Murilo Marques Ã¢â‚¬â€ RM a informar.
+- Paulo Henrique da Silva Kian Ã¢â‚¬â€ RM a informar.
 
 O desenvolvimento principal do aplicativo e centralizado em Paulo. Video demonstrativo: link a adicionar apos publicacao pelo integrante responsavel.
 
-## Funcionalidades da versao atual
+## Funcionalidades
 
 - Boas-vindas e identidade CURIE em Material 3.
 - Home com pontuacao e progresso.
 - Catalogo de tres missoes educativas.
-- Medicao local simulada, explicitamente identificada como ficticia.
-- Mapa ilustrativo com registros e valores demonstrativos.
+- Medicao local simulada, identificada como ficticia.
+- Mapa ilustrativo com registros demonstrativos.
 - Marie com respostas locais predefinidas, sem IA generativa.
 - Conquistas atualizadas conforme as missoes concluidas.
 - Formulario de observacao com validacao e feedback.
 - Pontuacao em memoria, com protecao contra conclusao duplicada.
 
-Todos os dados sao demonstrativos. A Sprint 1 nao integra ESP32, sensor Geiger-Mueller, NFC, backend, banco de dados, nuvem nem IA generativa. O progresso local nao persiste ao fechar o aplicativo.
+Todos os dados sao demonstrativos. Esta Sprint nao integra ESP32, sensor Geiger-Mueller, NFC, backend, banco de dados, nuvem nem IA generativa. O progresso nao persiste ao fechar o aplicativo.
 
 ## Tecnologias e estrutura
 
@@ -32,12 +32,12 @@ Todos os dados sao demonstrativos. A Sprint 1 nao integra ESP32, sensor Geiger-M
 - `lib/models/`: modelo de missao.
 - `lib/data/`: conteudo simulado e respostas da Marie.
 - `lib/widgets/`: componentes reutilizaveis.
-- `test/`: testes de widgets para navegacao, missao, formulario, mapa e Marie.
+- `test/`: testes de widgets para boas-vindas, missoes, formulario, mapa e Marie.
 - `android/`: configuracao Android.
 
 ## Preparar e executar
 
-O SDK Flutter local fica em `.tools/flutter` e e ignorado pelo Git. O script `tools/flutter.ps1` usa uma configuracao local isolada, sem modificar as preferencias globais do Flutter. No PowerShell:
+O SDK Flutter local fica em `.tools/flutter` e e ignorado pelo Git. `tools/flutter.ps1` usa configuracao local isolada, sem modificar as preferencias globais do Flutter. No PowerShell:
 
 ```powershell
 .\tools\flutter.ps1 pub get
@@ -46,8 +46,8 @@ O SDK Flutter local fica em `.tools/flutter` e e ignorado pelo Git. O script `to
 .\tools\flutter.ps1 run
 ```
 
-Este computador ainda precisa de Android SDK Command-line Tools, verificacao/aceite das licencas pelo usuario, plataforma Android 36, NDK 28.2.13676358 e uma imagem de sistema valida para o emulador. `flutter doctor -v` identificou o SDK existente, mas apontou essas pendencias. `adb devices` nao mostrou dispositivo conectado. Ainda nao foi possivel validar compilacao ou execucao Android.
+O APK debug compilou com sucesso em `build/app/outputs/flutter-apk/app-debug.apk`. Ainda nao foi executado em Android: os AVDs cadastrados nao tem imagem de sistema e `adb devices` nao encontrou aparelho. Android SDK Command-line Tools foram instaladas no SDK existente. API 36, NDK 28.2.13676358 e CMake foram instalados pelo Gradle durante o build. `flutter doctor -v` informa que 7 de 8 licencas Android ainda nao foram aceitas; revise e aceite-as manualmente com `.\tools\flutter.ps1 doctor --android-licenses` antes de instalar uma imagem de sistema. O SDK Manager tambem relata `platform-tools` em `platform-tools-2`, local inconsistente que ainda requer revisao.
 
 ## Video
 
-Roteiro sugerido para gravacao de ate cinco minutos: apresentar o objetivo do CURIE; abrir no Android; navegar pela Home, missoes, medicao simulada, mapa, Marie e conquistas; concluir uma missao e mostrar os pontos atualizados; enviar formulario invalido e depois valido; encerrar reforcando que leituras e respostas sao demonstrativas. Link do YouTube nao listado: pendente.
+Roteiro sugerido para gravacao de ate cinco minutos: apresentar o objetivo; abrir no Android; navegar pela Home, missoes, medicao simulada, mapa, Marie e conquistas; concluir uma missao e mostrar os pontos; enviar formulario invalido e depois valido; encerrar explicando que leituras e respostas sao demonstrativas. Link do YouTube nao listado: pendente.
