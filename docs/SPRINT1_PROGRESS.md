@@ -7,7 +7,7 @@ Atualizado em 2026-10-30.
 - Etapa em execucao: fundacao funcional implementada; validacao Android e revisao final pendentes.
 - Concluido: SDK Flutter 3.47.9 stable e Dart 3.13.7; projeto `curie_mobile`; tema Material 3; oito telas/fluxos; dados demonstrativos; navegacao; estado de missoes e pontuacao; formulario validado; README; wrapper local do Flutter.
 - Ultima verificacao: `flutter analyze` sem problemas; `flutter test` com 4 testes aprovados em 2026-10-30.
-- Ultimo commit local: ainda nao criado nesta retomada.
+- Ultimo commit local: `0a6ac38 feat: implementa prototipo funcional do CURIE` (PhKian <paulohkian@gmail.com>).
 - Problemas conhecidos: instalacao global/config do Flutter tem caminho Android SDK incorreto (`D:\Android\Sdk`); configuracao isolada em `.tools/flutter-config` aponta para SDK existente em `%LOCALAPPDATA%\Android\Sdk`; faltam Android SDK Command-line Tools; status de licencas desconhecido; API 36 e NDK 28.2.13676358 ausentes; AVDs nao tem imagens de sistema; nenhum dispositivo Android conectado. A execucao Android nao foi verificada.
 - Remoto GitHub, video e RMs: pendentes de informacao/acao do grupo; nao impedem implementacao local.
 
@@ -28,7 +28,7 @@ Atualizado em 2026-10-30.
 
 ## Proxima acao
 
-Verificar o diff e os arquivos ignorados, inicializar Git local, revisar os arquivos staged e criar um commit local autentico com a identidade configurada de Paulo. Depois, continuar com o diagnostico Android e auditoria.
+Continuar com o diagnostico Android e auditoria; o commit inicial local ja foi criado e a validacao Android segue pendente.
 
 ## Decisoes tecnicas
 
