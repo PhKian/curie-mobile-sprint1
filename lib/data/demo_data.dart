@@ -28,6 +28,15 @@ const demoMissions = <Mission>[
     points: 35,
     duration: '6 min',
   ),
+  Mission(
+    id: 'banana',
+    title: 'A banana radioativa',
+    subtitle: 'Radiação nos alimentos',
+    description: 'Descubra por que a banana, rica em potássio-40, emite uma radiação natural pequena e inofensiva. Leitura simulada para fins educativos.',
+    iconCode: 0xe3a6,
+    points: 25,
+    duration: '4 min',
+  ),
 ];
 
 const demoReadings = <Map<String, Object>>[
