@@ -8,7 +8,7 @@ Atualizado em 2026-10-30.
 - Concluído: Flutter 3.47.9 stable / Dart 3.13.7; base `curie_mobile`; tema Material 3; oito telas/fluxos; navegação; dados demonstrativos; pontuação e missões; formulário validado; wrappers locais; documentação e auditoria FIAP.
 - Última validação nesta sessão: `flutter test` passou com 5 testes; `flutter analyze` sem issues; `flutter build apk --debug` compilou com sucesso. APK: `build/app/outputs/flutter-apk/app-debug.apk`.
 - `flutter doctor --verbose`: Android toolchain e rede aprovados; todas as licenças Android aceitas; Visual Studio ausente para desktop Windows (não usado nesta Sprint). Flutter/Dart não estão no PATH global; use `tools/flutter.ps1`.
-- Git: branch `main`, identidade `PhKian <paulohkian@gmail.com>`, sem remoto. Quatro commits preexistentes preservados; o checkpoint de código/testes desta rodada é `39fd912` (`fix: corrige textos e layout responsivo`). Documentação desta rodada está no próximo checkpoint local.
+- Git: branch `main`, identidade `PhKian <paulohkian@gmail.com>`, sem remoto. Quatro commits preexistentes preservados; esta rodada gerou checkpoints locais incrementais para código/testes e documentação, ambos com a identidade de Paulo. Nenhum remoto foi configurado.
 
 ## Diagnóstico Android
 
