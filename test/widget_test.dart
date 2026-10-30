@@ -75,4 +75,36 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining('energia que se propaga'), findsOneWidget);
   });
+
+  testWidgets('main screens fit a compact phone viewport', (tester) async {
+    tester.view.physicalSize = const Size(360, 640);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const CurieApp());
+    await tester.tap(find.byIcon(Icons.arrow_forward));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+
+    for (final destination in ['Missoes', 'Mapa', 'Marie', 'Conquistas']) {
+      await tester.tap(find.text(destination).last);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: '$destination screen');
+    }
+
+    await tester.tap(find.byIcon(Icons.home_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.edit_note));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull, reason: 'observation form');
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Missoes').last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('ao nosso redor'));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull, reason: 'mission details');
+  });
 }

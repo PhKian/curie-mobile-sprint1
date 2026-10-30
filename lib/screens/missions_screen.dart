@@ -17,8 +17,8 @@ class MissionsScreen extends StatelessWidget {
     child: Column(
       children: [
         const PageHeading(
-          title: 'MissÃµes',
-          subtitle: 'Aprenda ciÃªncia em pequenas descobertas.',
+          title: 'Missões',
+          subtitle: 'Aprenda ciência em pequenas descobertas.',
         ),
         Expanded(
           child: ListView.separated(
@@ -63,13 +63,14 @@ class MissionsScreen extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(mission.subtitle),
                               const SizedBox(height: 8),
-                              Row(
+                              Wrap(
+                                spacing: 14,
+                                runSpacing: 6,
                                 children: [
                                   InfoPill(
                                     icon: Icons.schedule,
                                     label: mission.duration,
                                   ),
-                                  const SizedBox(width: 14),
                                   InfoPill(
                                     icon: Icons.star_outline,
                                     label: '${mission.points} pts',

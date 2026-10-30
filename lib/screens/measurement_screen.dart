@@ -29,7 +29,7 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MissÃƒÂ£o educativa')),
+      appBar: AppBar(title: const Text('Missão educativa')),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
@@ -61,7 +61,7 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
                     const SizedBox(width: 10),
                     const Expanded(
                       child: Text(
-                        'SIMULAÃƒâ€¡ÃƒÆ’O EDUCATIVA: esta leitura ÃƒÂ© gerada localmente, nÃƒÂ£o usa sensor e nÃƒÂ£o representa uma mediÃƒÂ§ÃƒÂ£o real.',
+                        'SIMULAÇÃO EDUCATIVA: esta leitura é gerada localmente, não usa sensor e não representa uma medição real.',
                       ),
                     ),
                   ],
@@ -73,7 +73,7 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
               FilledButton.icon(
                 onPressed: _takeReading,
                 icon: const Icon(Icons.play_arrow),
-                label: const Text('Iniciar simulaÃƒÂ§ÃƒÂ£o'),
+                label: const Text('Iniciar simulação'),
               )
             else
               Card(
@@ -92,14 +92,14 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
                         style: TextStyle(fontSize: 18),
                       ),
                       Text(
-                        '${_reading.toStringAsFixed(2)} Ã‚ÂµSv/h',
+                        '${_reading.toStringAsFixed(2)} µSv/h',
                         style: const TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF0B1730),
                         ),
                       ),
-                      const Text('Valor fictÃƒÂ­cio para fins educativos'),
+                      const Text('Valor fictício para fins educativos'),
                     ],
                   ),
                 ),
@@ -114,17 +114,15 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
                 },
                 icon: const Icon(Icons.task_alt),
                 label: Text(
-                  'Concluir missÃƒÂ£o Ã¢â‚¬Â¢ +${widget.mission.points} pontos',
+                  'Concluir missão • +${widget.mission.points} pontos',
                 ),
               ),
             if (widget.isCompleted)
               const Card(
                 child: ListTile(
                   leading: Icon(Icons.check_circle, color: Colors.green),
-                  title: Text('MissÃƒÂ£o jÃƒÂ¡ concluÃƒÂ­da'),
-                  subtitle: Text(
-                    'Os pontos nÃƒÂ£o serÃƒÂ£o adicionados novamente.',
-                  ),
+                  title: Text('Missão já concluída'),
+                  subtitle: Text('Os pontos não serão adicionados novamente.'),
                 ),
               ),
             if (_measured && !widget.isCompleted)
