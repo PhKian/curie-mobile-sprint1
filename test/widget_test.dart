@@ -67,18 +67,18 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.edit_note));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Validar registro'));
+    await tester.tap(find.text('Enviar registro'));
     await tester.pumpAndSettle();
     expect(find.text('Informe ao menos 3 caracteres.'), findsOneWidget);
     await tester.enterText(find.byType(TextFormField).at(0), 'Amostra de solo');
-    await tester.tap(find.text('Validar registro'));
+    await tester.tap(find.text('Enviar registro'));
     await tester.pumpAndSettle();
     expect(find.text('Descreva em pelo menos 10 caracteres.'), findsOneWidget);
     await tester.enterText(
       find.byType(TextFormField).at(1),
       'Comparei observacoes do experimento educativo.',
     );
-    await tester.tap(find.text('Validar registro'));
+    await tester.tap(find.text('Enviar registro'));
     await tester.pumpAndSettle();
     expect(find.text('Registro validado!'), findsOneWidget);
   });
