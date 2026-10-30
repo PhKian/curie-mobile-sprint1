@@ -1,43 +1,43 @@
-# CURIE Ã¢â‚¬â€ Mobile Application Development, Sprint 1
+# CURIE — Mobile Application Development, Sprint 1
 
-Aplicativo educacional da turma 2TDSPB para o FIAP Challenge 2026, no contexto CTMSP / Marinha do Brasil. O CURIE aproxima estudantes do ensino medio da ciencia nuclear por atividades interativas.
+Aplicativo educacional da turma 2TDSPB para o FIAP Challenge 2026, no contexto CTMSP / Marinha do Brasil. O CURIE aproxima estudantes do ensino médio da ciência nuclear por atividades interativas.
 
 ## Integrantes
 
-- Matheus Carneiro Maciel Ã¢â‚¬â€ RM a informar.
-- Murilo Marques Ã¢â‚¬â€ RM a informar.
-- Paulo Henrique da Silva Kian Ã¢â‚¬â€ RM a informar.
+- Matheus Carneiro Maciel — RM a informar.
+- Murilo Marques — RM a informar.
+- Paulo Henrique da Silva Kian — RM a informar.
 
-O desenvolvimento principal do aplicativo e centralizado em Paulo. Video demonstrativo: link a adicionar apos publicacao pelo integrante responsavel.
+O desenvolvimento principal do aplicativo é centralizado em Paulo. O vídeo demonstrativo será gravado por outro integrante; link a adicionar após a publicação.
 
 ## Funcionalidades
 
 - Boas-vindas e identidade CURIE em Material 3.
-- Home com pontuacao e progresso.
-- Catalogo de tres missoes educativas.
-- Medicao local simulada, identificada como ficticia.
+- Home com pontuação e progresso.
+- Catálogo de três missões educativas.
+- Medição local simulada, identificada como fictícia.
 - Mapa ilustrativo com registros demonstrativos.
 - Marie com respostas locais predefinidas, sem IA generativa.
-- Conquistas atualizadas conforme as missoes concluidas.
-- Formulario de observacao com validacao e feedback.
-- Pontuacao em memoria, com protecao contra conclusao duplicada.
+- Conquistas atualizadas conforme as missões concluídas.
+- Formulário de observação com validação e feedback.
+- Pontuação em memória, com proteção contra conclusão duplicada.
 
-Todos os dados sao demonstrativos. Esta Sprint nao integra ESP32, sensor Geiger-Mueller, NFC, backend, banco de dados, nuvem nem IA generativa. O progresso nao persiste ao fechar o aplicativo.
+Todos os dados são demonstrativos. Esta Sprint não integra ESP32, sensor Geiger-Müller, NFC, backend, banco de dados, nuvem nem IA generativa. O progresso não persiste ao fechar o aplicativo.
 
 ## Tecnologias e estrutura
 
 - Flutter 3.47.9 stable / Dart 3.13.7.
 - Material 3, widgets nativos e `setState()`.
 - `lib/screens/`: telas e fluxos.
-- `lib/models/`: modelo de missao.
-- `lib/data/`: conteudo simulado e respostas da Marie.
-- `lib/widgets/`: componentes reutilizaveis.
-- `test/`: testes de widgets para boas-vindas, missoes, formulario, mapa e Marie.
-- `android/`: configuracao Android.
+- `lib/models/`: modelo de missão.
+- `lib/data/`: conteúdo simulado e respostas da Marie.
+- `lib/widgets/`: componentes reutilizáveis.
+- `test/`: testes de widgets para boas-vindas, missões, formulário, mapa, Marie e viewport compacto.
+- `android/`: configuração Android.
 
 ## Preparar e executar
 
-O SDK Flutter local fica em `.tools/flutter` e e ignorado pelo Git. `tools/flutter.ps1` usa configuracao local isolada, sem modificar as preferencias globais do Flutter. No PowerShell:
+O SDK Flutter local fica em `.tools/flutter` e é ignorado pelo Git. `tools/flutter.ps1` usa configuração local isolada, sem modificar preferências globais do Flutter. No PowerShell:
 
 ```powershell
 .\tools\flutter.ps1 pub get
@@ -46,8 +46,12 @@ O SDK Flutter local fica em `.tools/flutter` e e ignorado pelo Git. `tools/flutt
 .\tools\flutter.ps1 run
 ```
 
-O APK debug compilou com sucesso em `build/app/outputs/flutter-apk/app-debug.apk`. Ainda nao foi executado em Android: os AVDs cadastrados nao tem imagem de sistema e `adb devices` nao encontrou aparelho. Android SDK Command-line Tools foram instaladas no SDK existente. API 36, NDK 28.2.13676358 e CMake foram instalados pelo Gradle durante o build. `flutter doctor -v` informa que 7 de 8 licencas Android ainda nao foram aceitas; revise e aceite-as manualmente com `.\tools\flutter.ps1 doctor --android-licenses` antes de instalar uma imagem de sistema. O SDK Manager tambem relata `platform-tools` em `platform-tools-2`, local inconsistente que ainda requer revisao.
+O APK debug compila em `build/app/outputs/flutter-apk/app-debug.apk`. `flutter doctor --verbose` confirmou que as licenças Android estão aceitas, mas ainda não foi possível executar em Android: não há imagem de sistema instalada nem aparelho conectado. A tentativa de instalar a imagem configurada para `Medium_Phone` falhou por espaço insuficiente no disco. O SDK Manager também reporta `platform-tools` em `platform-tools-2`, local inconsistente que requer revisão.
 
-## Video
+## Vídeo
 
-Roteiro sugerido para gravacao de ate cinco minutos: apresentar o objetivo; abrir no Android; navegar pela Home, missoes, medicao simulada, mapa, Marie e conquistas; concluir uma missao e mostrar os pontos; enviar formulario invalido e depois valido; encerrar explicando que leituras e respostas sao demonstrativas. Link do YouTube nao listado: pendente.
+Consulte [o checklist de gravação](docs/VIDEO_CHECKLIST.md). Link do YouTube não listado: pendente.
+
+## Auditoria e andamento
+
+Consulte [a auditoria dos critérios da Sprint](docs/FIAP_AUDIT.md) e [o registro de progresso](docs/SPRINT1_PROGRESS.md). A pontuação não é estimada como máxima sem evidências da demonstração final.
