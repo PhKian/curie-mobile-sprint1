@@ -15,7 +15,7 @@ void main() {
     await tester.pumpWidget(const CurieApp());
     await tester.tap(find.byIcon(Icons.arrow_forward));
     await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.assignment_outlined));
+    await tester.tap(find.byIcon(Icons.assignment_outlined));                               
     await tester.pumpAndSettle();
     await tester.tap(find.textContaining('ao nosso redor'));
     await tester.pumpAndSettle();
