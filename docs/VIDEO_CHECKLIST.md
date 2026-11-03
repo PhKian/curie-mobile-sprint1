@@ -20,7 +20,7 @@ Duração alvo: 4min40s (limite: 5min). O integrante designado pela equipe grava
 | 1:00–1:20 | Na tela de detalhes, mostre objetivo e orientação de segurança; toque **Iniciar missão**. | “Cada missão apresenta seu objetivo e orientações antes da atividade.” |
 | 1:20–1:45 | Toque **Simular medição**. Espere aparecer o valor. Mostre o texto que identifica o resultado como fictício. | “A medição é uma simulação local; não há leitura de sensor real.” |
 | 1:45–2:00 | Toque **Concluir missão +30 pontos** uma vez. Aguarde voltar ao catálogo. Volte à Home e mostre 30 pontos/progresso. | “Ao concluir, o estado da sessão atualiza e a pontuação é adicionada uma vez.” |
-| 2:00–2:20 | Toque **Mapa**. Mostre os pontos e os valores; role se necessário até o aviso. | “O mapa contém registros de exemplo. Não representa medições coletadas nem localização real.” |
+| 2:00–2:20 | Toque **Mapa**. Mostre os pontos e os valores; role se necessário até o aviso. | “O mapa contém registros de exemplo. Não representa medições coletadas nem  localização real.” |
 | 2:20–2:45 | Toque **Marie**. Toque no atalho **O que é meia-vida?** e mostre a resposta; depois, se houver tempo, digite `radiação` no campo e toque enviar. | “Marie oferece respostas locais predefinidas para apoiar o aprendizado; não usa IA generativa nem conexão com serviço externo.” |
 | 2:45–3:05 | Toque **Conquistas**. Mostre 30 pontos e a primeira conquista liberada. | “As conquistas acompanham o progresso das missões realizadas nesta sessão.” |
 | 3:05–3:20 | Volte à Home e toque **Registrar observação**. Toque **Validar registro** com os campos vazios. | “O caderno de campo valida os dados e informa o que falta.” |
