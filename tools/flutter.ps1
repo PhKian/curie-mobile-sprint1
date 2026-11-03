@@ -9,8 +9,8 @@ $FlutterCommand = Join-Path $FlutterRoot 'bin\flutter.bat'
 
 if (-not (Test-Path -LiteralPath $FlutterCommand)) {
   throw "Flutter SDK nao encontrado em $FlutterRoot"
-}
-
+}    
+     
 New-Item -ItemType Directory -Force -Path $FlutterConfig | Out-Null
 $env:APPDATA = (Resolve-Path -LiteralPath $FlutterConfig).Path
 $AndroidSdk = Join-Path $env:LOCALAPPDATA 'Android\Sdk'
