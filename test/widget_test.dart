@@ -9,7 +9,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.arrow_forward));
     await tester.pumpAndSettle();
     expect(find.textContaining('cientista'), findsOneWidget);
-  });
+  });              
 
   testWidgets('mission completion awards points only once', (tester) async {
     await tester.pumpWidget(const CurieApp());
